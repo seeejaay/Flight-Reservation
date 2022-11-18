@@ -10,7 +10,7 @@ using namespace std;
 
 string uName, pWord, flightTm[5];
 
-void mainmenu(), signUp(), menu();
+void mainmenu(), logIn(), signUp(), menu();
 
 int main()
 {
@@ -79,7 +79,7 @@ void signUp()
 
     cout << "Enter your Username: ";
     getline(cin, uName);
-    again:
+again:
     cout << "Enter Password: ";
     getline(cin, pWord);
     if (pWord.length() <= 10) {
@@ -96,12 +96,12 @@ void signUp()
 
     cout << "You have Succesfully Signed Up!\n";
     return menu();
-    
+
 }
 void logIn()
 {
     string cuName, cpWord;
-    confirm:
+confirm:
     cout << "Enter your Username: ";
     getline(cin, cuName);
     cout << "Enter Password: ";
