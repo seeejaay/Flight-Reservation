@@ -6,9 +6,9 @@
 #include <iomanip>
 using namespace std;
 
-string userName, passWord, flightTm[5];
+string uName, pWord, flightTm[5];
 
-void mainmenu(), signUp(), menu(), popFlight();
+void mainmenu(), logIn(), signUp(), menu(), popFlight();
 
 int main()
 {
@@ -52,7 +52,7 @@ void menu() {
     {
     menuRepeat:
     case 1:
-        //logIn();
+        logIn();
         break;
     case 2:
         signUp();
@@ -72,13 +72,19 @@ void menu() {
 
 void signUp()
 {
-    string uName, pWord, pWordRepeat;
+    string pWordRepeat;
 
 
     cout << "Enter your Username: ";
     getline(cin, uName);
+    again:
     cout << "Enter Password: ";
     getline(cin, pWord);
+    if (pWord.length() <= 10) {
+        cout << "Password is too Short" << endl;
+        goto again;
+    }
+    else;
     do {
         cout << "Enter Password Again: ";
         getline(cin, pWordRepeat);
@@ -88,7 +94,26 @@ void signUp()
 
     cout << "You have Succesfully Signed Up!\n";
     return menu();
-
+    
+}
+void logIn()
+{
+    string cuName, cpWord;
+    confirm:
+    cout << "Enter your Username: ";
+    getline(cin, cuName);
+    cout << "Enter Password: ";
+    getline(cin, cpWord);
+    if (cuName == uName && cpWord == pWord) {
+        cout << "You have Succesfully Logged In!\n"; << endl;
+        return menu();
+    }
+    else {
+        cout << "Incorrect username or password" << endl;
+        goto confirm;
+    }
+        
+    
 }
 
 void popFlight() {
