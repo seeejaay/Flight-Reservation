@@ -10,7 +10,7 @@ using namespace std;
 
 string uName, pWord, flightTm[5];
 
-void mainmenu(), signUp(), menu();
+void mainmenu(), logIn(), signUp(), menu();
 
 int main()
 {
