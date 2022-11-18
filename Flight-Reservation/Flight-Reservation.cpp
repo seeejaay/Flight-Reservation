@@ -1,27 +1,48 @@
-//Flight Reservation System
+#include <fstream>
 #include <iostream>
-#include <string.h>
 #include <string>
-//Login Page
-//
-
-
-
-
+#include <algorithm>
+#include <cstdlib>
+#include <iomanip>
 using namespace std;
 
-string userName, passWord;
+string userName, passWord, flightTm[5];
 
-void menu();
-void signUp();
+void mainmenu(), signUp(), menu(), popFlight();
+
 int main()
 {
-    menu();
-    return 0;
+    signUp();
+    system("cls");
+    mainmenu();
 }
 
-void menu()
-{
+void mainmenu() {
+    int i = 0;
+    while (i < 120) {
+        cout << "*";
+        i++;
+    }
+    cout << "*" << setw(78) << "Welcome to BBMM's Flight Reservation!" << setw(42) << "*\n";
+    i = 0;
+    cout << "*";
+    while (i < 118) {
+        cout << "~";
+        i++;
+    }
+    cout << "*\n";
+    cout << "*" << setw(62) << "__ | __" << setw(57) << "*" << endl;
+    cout << "*" << setw(68) << "--@--@--(_)--@--@--" << setw(51) << "*" << endl;
+    i = 0;
+    while (i < 3) {
+        cout << "*" << setw(119) << "*" << endl;
+        i++;
+    }
+    cout << "*" << setw(67) << "Popular Flights:" << setw(52) << "*" << endl;
+}
+
+
+void menu() {
     //menuRepeat:
     int n;
     cout << "[1] Login" << endl << "[2] Sign Up" << endl << "[3] Log Out" << endl << "[4] Exit" << endl << "Choice: ";
@@ -55,9 +76,9 @@ void signUp()
 
 
     cout << "Enter your Username: ";
-   getline(cin, uName);
+    getline(cin, uName);
     cout << "Enter Password: ";
-   getline(cin, pWord);
+    getline(cin, pWord);
     do {
         cout << "Ente Password Again: ";
         getline(cin, pWordRepeat);
@@ -65,8 +86,11 @@ void signUp()
     } while (pWord != pWordRepeat);
 
 
-    cout << "You have Succesfully Signed Up!";
+    cout << "You have Succesfully Signed Up!\n";
     return menu();
 
 }
 
+void popFlight() {
+    //cout << "Manila - Osaka:";
+}
