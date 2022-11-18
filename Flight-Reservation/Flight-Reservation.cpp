@@ -4,17 +4,19 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iomanip>
+#include <time.h>
+#include <Windows.h>
 using namespace std;
 
 string uName, pWord, flightTm[5];
 
-void mainmenu(), logIn(), signUp(), menu(), popFlight();
+void mainmenu(), signUp(), menu();
 
 int main()
 {
-    signUp();
-    system("cls");
-    mainmenu();
+    //signUp();
+    //system("cls");
+    //mainmenu();
 }
 
 void mainmenu() {
@@ -70,9 +72,11 @@ void menu() {
     }
 }
 
+
+
 void signUp()
 {
-    string pWordRepeat;
+    string uName, pWord, pWordRepeat;
 
 
     cout << "Enter your Username: ";
@@ -112,8 +116,6 @@ void logIn()
         cout << "Incorrect username or password" << endl;
         goto confirm;
     }
-        
-    
 }
 
 void popFlight() {
