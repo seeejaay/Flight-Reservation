@@ -23,22 +23,22 @@ void mainmenu() {
         cout << "*";
         i++;
     }
-    cout << "*" << setw(78) << "Welcome to BBMM's Flight Reservation!" << setw(42) << "*\n";
+    cout << "*" << '\n' << "*" << setw(78) << "Welcome to BBMM's Flight Reservation!" << setw(43) << "*\n";
     i = 0;
     cout << "*";
-    while (i < 118) {
+    while (i < 119) {
         cout << "~";
         i++;
     }
     cout << "*\n";
-    cout << "*" << setw(62) << "__ | __" << setw(57) << "*" << endl;
-    cout << "*" << setw(68) << "--@--@--(_)--@--@--" << setw(51) << "*" << endl;
+    cout << "*" << setw(62) << "__ | __" << setw(58) << "*" << endl;
+    cout << "*" << setw(68) << "--@--@--(_)--@--@--" << setw(52) << "*" << endl;
     i = 0;
     while (i < 3) {
-        cout << "*" << setw(119) << "*" << endl;
+        cout << "*" << setw(120) << "*" << endl;
         i++;
     }
-    cout << "*" << setw(67) << "Popular Flights:" << setw(52) << "*" << endl;
+    cout << "*" << setw(67) << "Popular Flights:" << setw(53) << "*" << endl;
 }
 
 
@@ -80,7 +80,7 @@ void signUp()
     cout << "Enter Password: ";
     getline(cin, pWord);
     do {
-        cout << "Ente Password Again: ";
+        cout << "Enter Password Again: ";
         getline(cin, pWordRepeat);
 
     } while (pWord != pWordRepeat);
