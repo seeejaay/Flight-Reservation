@@ -6,9 +6,9 @@
 #include <iomanip>
 using namespace std;
 
-string userName, passWord, flightTm[5];
+string uName, pWord, flightTm[5];
 
-void mainmenu(), signUp(), menu(), popFlight();
+void mainmenu(), signUp(), menu();
 
 int main()
 {
@@ -106,7 +106,7 @@ void logIn()
     cout << "Enter Password: ";
     getline(cin, cpWord);
     if (cuName == uName && cpWord == pWord) {
-        cout << "You have Succesfully Logged In!\n"; << endl;
+        cout << "You have Succesfully Logged In!\n" << endl;
         return menu();
     }
     else {
@@ -115,11 +115,4 @@ void logIn()
     }
         
     
-}
-
-void popFlight() {
-    int x = rand() % 5, y = rand() % 3, c;
-    for (c = 0; c < 3; c++) {
-        cout << flightNm[x][0] << " " << flightNm[x][y] << endl;
-    }
 }
