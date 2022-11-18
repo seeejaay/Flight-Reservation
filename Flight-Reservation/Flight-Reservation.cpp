@@ -17,7 +17,6 @@ void signUp();
 int main()
 {
     menu();
-    cout << "test";
     return 0;
 }
 
