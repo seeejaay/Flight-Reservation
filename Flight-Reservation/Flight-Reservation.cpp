@@ -105,7 +105,7 @@ void logIn()
     cout << "Enter Password: ";
     getline(cin, cpWord);
     if (cuName == uName && cpWord == pWord) {
-        cout << "You have Succesfully Logged In!\n"; << endl;
+        cout << "You have Succesfully Logged In!\n" << endl;
         return menu();
     }
     else {
