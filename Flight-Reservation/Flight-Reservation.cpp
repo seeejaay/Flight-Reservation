@@ -6,15 +6,16 @@
 #include <iomanip>
 using namespace std;
 
-string uName, pWord, flightTm[5];
+string userName, passWord, flightTm[5];
 
-void mainmenu(), logIn(), signUp(), menu(), popFlight();
+void mainmenu(), signUp(), menu(), popFlight();
 
 int main()
 {
-    signUp();
-    system("cls");
-    mainmenu();
+    //signUp();
+    //system("cls");
+    //mainmenu();
+    popFlight();
 }
 
 void mainmenu() {
@@ -117,5 +118,8 @@ void logIn()
 }
 
 void popFlight() {
-    //cout << "Manila - Osaka:";
+    int x = rand() % 5, y = rand() % 3, c;
+    for (c = 0; c < 3; c++) {
+        cout << flightNm[x][0] << " " << flightNm[x][y] << endl;
+    }
 }
