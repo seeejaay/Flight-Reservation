@@ -15,7 +15,6 @@ int main()
     //signUp();
     //system("cls");
     //mainmenu();
-    popFlight();
 }
 
 void mainmenu() {
