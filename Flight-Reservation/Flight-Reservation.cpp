@@ -50,26 +50,26 @@ void menu()
     }
 }
 
-void signUp()
-{
-    string uName, pWord, pWordRepeat;
-
-
-
-    cout << "Enter your Username: ";
-    getline(cin, uName);
-
-    cout << "Enter Password: ";
-    getline(cin, pWord);
-    do {
-        cout << "Ente Password Again: ";
-        getline(cin, pWordRepeat);
-
-    } while (pWord != pWordRepeat);
-
-
-    cout << "You have Succesfully Signed Up!";
-    return menu();
-
-}
+//void signUp()
+//{
+//    string uName, pWord, pWordRepeat;
+//
+//
+//
+//    cout << "Enter your Username: ";
+//    getline(cin, uName);
+//
+//    cout << "Enter Password: ";
+//    getline(cin, pWord);
+//    do {
+//        cout << "Ente Password Again: ";
+//        getline(cin, pWordRepeat);
+//
+//    } while (pWord != pWordRepeat);
+//
+//
+//    cout << "You have Succesfully Signed Up!";
+//    return menu();
+//
+//}
 
