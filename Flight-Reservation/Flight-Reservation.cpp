@@ -72,9 +72,11 @@ void menu() {
     }
 }
 
+
+
 void signUp()
 {
-    string pWordRepeat;
+    string uName, pWord, pWordRepeat;
 
 
     cout << "Enter your Username: ";
@@ -116,49 +118,6 @@ void logIn()
     }
 }
 
-void FlightChc() {
-    string flightNm[5] = { "Jakarta, Indonesia", "Amsterdam, Netherlands", "New York, USA", "Manila, Philippines", "Osaka, Japan" };
-    string flightTm[10] = { "10:00PM - 11:00PM", "12:15AM - 2:00AM", "3:00AM - 3:45AM", "4:00AM - 5:30AM", "12:00PM - 2:15PM", "8:00AM - 9:20AM", "3:00PM - 4:45PM", "5:30PM - 7:00PM", "7:15PM - 8:50PM", "9:15PM - 9:50PM" };
-    string flightUser[1][2];
-    int depChc, ariChc;
-    for (int i = 0; i < 5; i++) {
-        cout << i + 1 << ". " << flightNm[i] << endl;
-    }
-depart:
-    cout << "Enter your departure location from the list: ";
-    cin >> depChc;
-    if (depChc < 1 || depChc > 5) {
-        cout << "Invalid location\n";
-        goto depart;
-    }
-    string departLoc = flightNm[depChc - 1];
-arriv:
-    cout << "Enter your arrival location from the list: ";
-    cin >> ariChc;
-    if (ariChc != depChc) {
-        if (ariChc < 1 || ariChc > 5) {
-            cout << "Invalid location!\n";
-            goto arriv;
-        }
-    }
-    else {
-        cout << "Duplicate location!\n";
-        goto arriv;
-    }
-    string arrivLoc = flightNm[ariChc - 1];
-    cout << "Your flight will be from " << departLoc << " to " << arrivLoc << "." << endl;
-    cout << "The time slots are: " << endl;
-    int c = 0, r, i = rand();
-    srand(time(0));
-    while (c < 5) {
-    repeat:
-        r = rand() % 10;
-        if (r != rand()) {
-            cout << c + 1 << ". " << flightTm[r] << endl;
-        }
-        else {
-            goto repeat;
-        }
-        c++;
-    }
+void popFlight() {
+    //cout << "Manila - Osaka:";
 }
