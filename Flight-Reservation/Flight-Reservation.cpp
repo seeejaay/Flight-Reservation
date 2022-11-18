@@ -8,13 +8,13 @@ using namespace std;
 
 string uName, pWord, flightTm[5];
 
-void mainmenu(), logIn(), signUp(), menu(), popFlight();
+void mainmenu(), signUp(), menu();
 
 int main()
 {
-    signUp();
-    system("cls");
-    mainmenu();
+    //signUp();
+    //system("cls");
+    //mainmenu();
 }
 
 void mainmenu() {
@@ -105,7 +105,7 @@ void logIn()
     cout << "Enter Password: ";
     getline(cin, cpWord);
     if (cuName == uName && cpWord == pWord) {
-        cout << "You have Succesfully Logged In!\n"; << endl;
+        cout << "You have Succesfully Logged In!\n" << endl;
         return menu();
     }
     else {
@@ -114,8 +114,4 @@ void logIn()
     }
         
     
-}
-
-void popFlight() {
-    //cout << "Manila - Osaka:";
 }
