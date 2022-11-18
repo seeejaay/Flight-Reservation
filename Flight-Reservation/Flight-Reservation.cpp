@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <time.h>
 #include <Windows.h>
+
 using namespace std;
 
 string uName, pWord, flightTm[5];
@@ -55,6 +56,10 @@ void menu() {
     switch (n)
     {
     case 1:
+        
+        
+            
+        
         logIn();
         break;
     case 2:
@@ -102,19 +107,36 @@ again:
 void logIn()
 {
     string cuName, cpWord;
-confirm:
-    cout << "Enter your Username: ";
-    getline(cin, cuName);
-    cout << "Enter Password: ";
-    getline(cin, cpWord);
-    if (cuName == uName && cpWord == pWord) {
-        cout << "You have Succesfully Logged In!\n" << endl;
-        return menu();
-    }
-    else {
-        cout << "Incorrect username or password" << endl;
-        goto confirm;
-    }
+    bool loggedIn = true;
+    do
+    {
+        cout << "Enter your Username: ";
+        getline(cin, cuName);
+
+        cout << "Enter Password: ";
+        getline(cin, cpWord);
+
+        if (cuName == uName && cpWord == pWord)
+        {
+            cout << "You have succesfully logged in !";
+        }
+        else { cout << "Your Username or Password may be wrong..." << endl;
+        loggedIn = false; }
+    } while (loggedIn == false);
+
+//confirm:
+//    cout << "Enter your Username: ";
+//    getline(cin, cuName);
+//    cout << "Enter Password: ";
+//    getline(cin, cpWord);
+//    if (cuName == uName && cpWord == pWord) {
+//        cout << "You have Succesfully Logged In!\n" << endl;
+//        return menu();
+//    }
+//    else {
+//        cout << "Incorrect username or password" << endl;
+//        goto confirm;
+//    }
 }
 
 void logOut()
