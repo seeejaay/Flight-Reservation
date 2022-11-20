@@ -189,11 +189,15 @@ arriv:
     int c = 0, r;
     srand(time(0));
     while (c < 5) {
-    repeat:
+        do 
+        {
+            r = rand() % 10;
+        }while(randStore[0] == r || randStore[1] == r || randStore[2] == r || randStore[3] == r || randStore[4] == r);
+    /*repeat:
         r = rand() % 10;
         if (randStore[0] == r || randStore[1] == r || randStore[2] == r || randStore[3] == r || randStore[4] == r) {
             goto repeat;
-        }
+        }*/
         randStore[c] = r;
         cout << c + 1 << ". " << flightTm[r] << endl;
         c++;
