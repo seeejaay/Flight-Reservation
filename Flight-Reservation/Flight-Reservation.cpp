@@ -18,7 +18,8 @@ void mainmenu(), logIn(), signUp(), menu(), FlightChc(),logOut(), popFlight();
 int main()
 {
     srand(time(0));
-    menu();
+    //menu();
+    mainmenu();
 }
 
 void mainmenu() {
@@ -37,12 +38,8 @@ void mainmenu() {
     cout << "*\n";
     cout << "*" << setw(62) << "__ | __" << setw(58) << "*" << endl;
     cout << "*" << setw(68) << "--@--@--(_)--@--@--" << setw(52) << "*" << endl;
-    i = 0;
-    while (i < 3) {
-        cout << "*" << setw(120) << "*" << endl;
-        i++;
-    }
-    cout << "*" << setw(67) << "Popular Flights:" << setw(53) << "*" << endl;
+    cout << "*" << setw(120) << "*" << endl;
+    popFlight();
 }
 
 
@@ -237,12 +234,13 @@ seatChc:
 
 void popFlight() {
     int i, cNm, cNm2, cTm, cTm2;
-    cout << "Today's most popular flights are:" << endl;
+    cout << "*" << setw(75) << "Today's most popular flights are:" << setw(45) << "*" << endl;
     //lists random flight arriv % dest, along with random time
     for (i = 0; i < 3; i++) {
         cNm = rand() % 5;
+    repTm2:
         cTm = rand() % 10;
-        cout << i + 1 << ". " << flightNm[cNm] << " to ";
+        cout << "*" << setw(29) << i + 1 << ". " << flightNm[cNm] << " to ";
     repNm2:
         cNm2 = rand() % 5;
         if (cNm == cNm2) {
@@ -251,6 +249,10 @@ void popFlight() {
         else {
             cout << flightNm[cNm2] << ": ";
         }
-        cout << flightTm[cTm] << endl;
+        cTm2 = rand() % 10;
+        if (cTm2 == cTm) {
+            goto repTm2;
+        }
+        cout << flightTm[cTm] << setw(56 - ((flightNm[cNm].length()) + (flightNm[cTm].length()))) << "*" << endl;
     }
 }
