@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <iomanip>
 #include <time.h>
-
 #include <Windows.h>
 using namespace std;
 
@@ -132,6 +131,7 @@ void logIn()
         cout << "Enter Password: ";
         getline(cin, cpWord);
     }while(cuName != uName || cpWord != pWord);
+
     cout << "You have succesfully logged in!" << endl;
     Sleep(1000);
     system("cls");
