@@ -11,7 +11,7 @@ using namespace std;
 
 string flightNm[5] = { "Jakarta, Indonesia", "Amsterdam, Netherlands", "New York, USA", "Manila, Philippines", "Osaka, Japan" };
 string flightTm[10] = { "10:00PM - 11:00PM", "12:15AM - 2:00AM", "3:00AM - 3:45AM", "4:00AM - 5:30AM", "12:00PM - 2:15PM", "8:00AM - 9:20AM", "3:00PM - 4:45PM", "5:30PM - 7:00PM", "7:15PM - 8:50PM", "9:15PM - 9:50PM" };
-
+string months[12] = { "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec" };
 
 
 string flightUser[1][3];
@@ -156,7 +156,7 @@ void logOut()
 }
 void FlightChc() {
     string reply;
-    int depChc, ariChc, timeChc, seat, randStore[5];
+    int depChc, ariChc, timeChc, seat, randStore[5] = {},monthPicker,datePicker;
     int seatNo = (rand() % 500) + 1;
     //displays flight locations
     for (int i = 0; i < 5; i++) {
@@ -186,6 +186,45 @@ arriv:
         cout << "Duplicate location!\n";
         goto arriv;
     }
+
+
+enterMonthNum:
+    cout << "Enter the Month Number (1,2,3,4,5,...) : ";
+    cin >> monthPicker;
+
+
+    if (monthPicker == 4 || monthPicker == 6 || monthPicker == 11)
+    {
+        do
+        {
+            cout << "Enter Preferred Date: ";
+            cin >> datePicker;
+        } while (datePicker > 30);
+    }
+    else if (monthPicker == 2)
+    {
+        do
+        {
+            cout << "Enter Preferred Date: ";
+            cin >> datePicker;
+        } while (datePicker > 28);
+    }
+    else if (monthPicker == 1 || monthPicker == 3 || monthPicker == 5 || monthPicker == 7 || monthPicker == 8 || monthPicker == 10 || monthPicker == 12)
+    {
+        do
+        {
+            cout << "Enter Preferred Date: ";
+            cin >> datePicker;
+        } while (datePicker > 31);
+    }
+    else
+    {
+        cout << "INVALID INPUT";
+        Sleep(1);
+        goto enterMonthNum;
+    }
+    monthPicker -= 1;
+
     flightUser[0][1] = flightNm[ariChc - 1];
     cout << "Your flight will be from " << flightUser[0][0] << " to " << flightUser[0][1] << "." << endl;
     cout << "The time slots are: " << endl;
@@ -228,6 +267,7 @@ seatChc:
     //outputs flight receipt
     cout << "Please double check your flight details:" << endl;
     cout << "Destination: " << flightUser[0][0] << " to " << flightUser[0][1] << endl;
+    cout << "Departure Date: " << months[monthPicker] << " " << datePicker << endl;
     cout << "Time Slot: " << flightUser[0][2] << endl;
     cout << "Seat # " << seat <<endl;
     cin.ignore();
