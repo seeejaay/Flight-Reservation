@@ -186,45 +186,6 @@ arriv:
         cout << "Duplicate location!\n";
         goto arriv;
     }
-
-
-enterMonthNum:
-    cout << "Enter the Month Number (1,2,3,4,5,...) : ";
-    cin >> monthPicker;
-
-
-    if (monthPicker == 4 || monthPicker == 6 || monthPicker == 11)
-    {
-        do
-        {
-            cout << "Enter Preferred Date: ";
-            cin >> datePicker;
-        } while (datePicker > 30);
-    }
-    else if (monthPicker == 2)
-    {
-        do
-        {
-            cout << "Enter Preferred Date: ";
-            cin >> datePicker;
-        } while (datePicker > 28);
-    }
-    else if (monthPicker == 1 || monthPicker == 3 || monthPicker == 5 || monthPicker == 7 || monthPicker == 8 || monthPicker == 10 || monthPicker == 12)
-    {
-        do
-        {
-            cout << "Enter Preferred Date: ";
-            cin >> datePicker;
-        } while (datePicker > 31);
-    }
-    else
-    {
-        cout << "INVALID INPUT";
-        Sleep(1);
-        goto enterMonthNum;
-    }
-    monthPicker -= 1;
-
     flightUser[0][1] = flightNm[ariChc - 1];
     cout << "Your flight will be from " << flightUser[0][0] << " to " << flightUser[0][1] << "." << endl;
     cout << "The time slots are: " << endl;
