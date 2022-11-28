@@ -21,7 +21,8 @@ void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut(), popFlight() ;
 int main()
 {
     srand(time(0));
-    menu();
+    //menu();
+    FlightChc();
 }
 
 void mainmenu() {
@@ -155,7 +156,7 @@ void logOut()
     else goto repeat;
 }
 void FlightChc() {
-    string reply;
+    string reply, flightTmStore[5];
     int depChc, ariChc, timeChc, seat, randStore[5] = {},monthPicker,datePicker;
     int seatNo = (rand() % 500) + 1;
     //displays flight locations
@@ -239,6 +240,7 @@ enterMonthNum:
         } while(randStore[0] == r || randStore[1] == r || randStore[2] == r || randStore[3] == r || randStore[4] == r);
         randStore[c] = r;
         cout << c + 1 << ". " << flightTm[r] << endl;
+        flightTmStore[c] = flightTm[r];
         c++;
     }
 timeslot:
@@ -249,7 +251,7 @@ timeslot:
         cout << "Invalid time slot!\n";
         goto timeslot;
     }
-    flightUser[0][2] = flightTm[timeChc - 1];
+    flightUser[0][2] = flightTmStore[timeChc-1];
 seatChc:
     cout << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
     cin >> seat;
