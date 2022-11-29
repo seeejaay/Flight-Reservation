@@ -13,14 +13,17 @@ string flightTm[10] = { "10:00PM - 11:00PM", "12:15AM - 2:00AM", "3:00AM - 3:45A
 string months[12] = { "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec" };
 string flightUser[1][4];
 string uName, pWord;
-void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut();
+void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut(), popFlight();
+
 
 int main()
 {
     srand(time(0));
     system("Color 03");
-    //menu();
+    
     mainmenu();
+    menu();
+    //testing purpose
     //FlightChc();
 }
 
@@ -45,15 +48,17 @@ void mainmenu() {
 
     cout << setw(72) << "__ | __" << setw(58)<< endl;
     cout << setw(72) << "--@--@--(_)--@--@--" << setw(52) << endl;
+    
     cout << setw(95) << "\n";
+    
     b = 0;
+    popFlight();
     cout << setw(5);
     while (b < 110) {
         cout << "~";
         b++;
     }
-    
-  
+    cout << endl;
     
 }
 
@@ -61,7 +66,7 @@ void mainmenu() {
 void menu() {
     int n;
     string reply;
-    cout << "[1] Login" << endl << "[2] Sign Up" << endl << "[3] Log Out" << endl << "[4] Exit" << endl << "Choice: ";
+    cout <<setw(46) <<  "[1] Login" << endl << setw(48) << "[2] Sign Up" << endl << setw(48) << "[3] Log Out" << endl << setw(45) << "[4] Exit" << endl << setw(45) << "Choice: ";
     cin >> n;
     cin.ignore();
     switch (n)
@@ -73,7 +78,8 @@ void menu() {
             cout << "There is no registered account yet" << endl;
             Sleep(1000);
             system("cls");
-            return menu();
+            mainmenu();
+            menu();
         }
         logIn();
         break;
@@ -82,7 +88,7 @@ void menu() {
         break;
     case 3:
         //logs the user out
-        return menu();
+        logOut();
         break;
     case 4:
         //check if you want to exit program
@@ -93,14 +99,16 @@ void menu() {
         if (reply == "Y" || reply == "YES")
         {
             //exits the program
+            Sleep(1000);
+            system("cls");
             exit(1);
         }
-        menu();
+        mainmenu();
         
         break;
     default:
         cout << "Invalid input!";
-        return menu();
+        return mainmenu();
         break;
     }
 }
@@ -132,7 +140,8 @@ again:
     cout << "You have Succesfully Signed Up!" << endl;
     Sleep(1000);
     system("cls");
-    return menu();
+    mainmenu();
+    menu();
 
 }
 void logIn()
@@ -151,39 +160,45 @@ void logIn()
     return FlightChc();
     
 }
-
-
 void logOut()
 {
+    
     repeat:
     string reply;
     cout << "Do you want to logout? [Y/N]: ";
     getline(cin, reply);
+    //convers input to all caps
     transform(reply.begin(), reply.end(), reply.begin(), ::toupper);
     if (reply == "Y" || reply == "YES") {
         Sleep(1000);
         system("cls");
-        return menu();
+        mainmenu();
+        menu();
     }
     else goto repeat;
 }
+
+
 void FlightChc() {
     string reply, flightTmStore[5];
     int depChc, ariChc, timeChc, seat, randStore[5] = {},monthPicker,datePicker, passengerNum;
     int seatNo = (rand() % 500) + 1;
     int counter;
+    mainmenu();
     cout << "How many seat do you want to reserve? : ";
     cin >> passengerNum;
     int* seatPos = new int(passengerNum);
         //displays flight locations
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++)
+        {
             cout << i + 1 << ". " << flightNm[i] << endl;
         }
     depart:
         cout << "Enter your departure location from the list: ";
         cin >> depChc;
         //checks if invalid
-        if (depChc < 1 || depChc > 5) {
+        if (depChc < 1 || depChc > 5)
+        {
             cout << "Invalid location\n";
             goto depart;
         }
@@ -192,23 +207,25 @@ void FlightChc() {
         cout << "Enter your arrival location from the list: ";
         cin >> ariChc;
         //checks if invalid
-        if (ariChc != depChc) {
+        if (ariChc != depChc)
+        {
             if (ariChc < 1 || ariChc > 5) {
                 cout << "Invalid location!\n";
                 goto arriv;
             }
         }
         //checks if duplicate
-        else {
+        else
+        {
             cout << "Duplicate location!\n";
             goto arriv;
         }
-
+        //lets you pick departure date
     enterMonthNum:
         cout << "Enter the Month Number (1,2,3,4,5,...) : ";
         cin >> monthPicker;
 
-
+        //mos. with 30 days
         if (monthPicker == 4 || monthPicker == 6 || monthPicker == 11)
         {
             do
@@ -217,6 +234,7 @@ void FlightChc() {
                 cin >> datePicker;
             } while (datePicker > 30);
         }
+        //february no leap year
         else if (monthPicker == 2)
         {
             do
@@ -225,6 +243,7 @@ void FlightChc() {
                 cin >> datePicker;
             } while (datePicker > 28);
         }
+        //months with 31 days
         else if (monthPicker == 1 || monthPicker == 3 || monthPicker == 5 || monthPicker == 7 || monthPicker == 8 || monthPicker == 10 || monthPicker == 12)
         {
             do
@@ -247,9 +266,10 @@ void FlightChc() {
         cout << "The time slots are: " << endl;
         int c = 0, r;
         //randomizes index of randStore[]
-        srand(time(0));
+        
         //outputs random time
-        while (c < 5) {
+        while (c < 5)
+        {
             do
             {
                 r = rand() % 10;
@@ -259,7 +279,7 @@ void FlightChc() {
             flightTmStore[c] = flightTm[r];
             c++;
         }
-    timeslot:
+        timeslot:
         cout << "Enter your time slot: ";
         cin >> timeChc;
         //checks if valid input
@@ -268,32 +288,71 @@ void FlightChc() {
             goto timeslot;
         }
         flightUser[0][2] = flightTmStore[timeChc - 1];
-        for (counter = 1; counter <= passengerNum; counter++) {
-seatChc:
-        cout << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
-        cin >> seat;
-        seatPos[counter - 1] = seat;
-        //outputs random no. of seats from 0 - 500
-        if (seatNo == 0) {
-            cout << "There are no more seats available, please choose a different time slot";
-            system("pause");
-            goto timeslot;
+        for (counter = 1; counter <= passengerNum; counter++)
+        {
+            seatChc:
+            cout << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
+            cin >> seat;
+            seatPos[counter - 1] = seat;
+            //outputs random no. of seats from 0 - 500
+            if (seatNo == 0)
+            {
+                cout << "There are no more seats available, please choose a different time slot";
+                system("pause");
+                goto timeslot;
+            }
+            //checks if invalid input
+            if (seat > seatNo) {
+                cout << "Invalid seat, please choose another one!\n";
+                goto seatChc;
+            }
+            int i = 0;
+            cout << "Please double check your flight details:" << endl;
+            cout << "Destination: " << flightUser[i][0] << " to " << flightUser[i][1] << endl;
+            cout << "Departure Date: " << months[monthPicker] << " " << datePicker << endl;
+            cout << "Time Slot: " << flightUser[i][2] << endl;
+            cout << "Seat # " << seatPos[counter - 1] << endl;
+            seatNo -= 1;
+            i++;
+            cin.ignore();
         }
-        //checks if invalid input
-        if (seat > seatNo) {
-            cout << "Invalid seat, please choose another one!\n";
-            goto seatChc;
-        }
-        //outputs flight receipt
-        int i = 0;
-        cout << "Please double check your flight details:" << endl;
-        cout << "Destination: " << flightUser[i][0] << " to " << flightUser[i][1] << endl;
-        cout << "Departure Date: " << months[monthPicker] << " " << datePicker << endl;
-        cout << "Time Slot: " << flightUser[i][2] << endl;
-        cout << "Seat # " << seatPos[counter - 1] << endl;
-        i++;
-        seatNo -= 1;
-        cin.ignore();
-    }
+        //Sleep(1000);
+        //system("cls");
+        //int i;
+        ////outputs flight receipt
+        //for (i = ;i <= passengerNum; i++) {
+        //    cout << "Please double check your flight details:" << endl;
+        //    cout << "Destination: " << flightUser[i][0] << " to " << flightUser[i][1] << endl;
+        //    cout << "Departure Date: " << months[monthPicker] << " " << datePicker << endl;
+        //    cout << "Time Slot: " << flightUser[i][2] << endl;
+        //    cout << "Seat # " << seatPos[counter - 1] << endl;
+        //    seatNo -= 1;
+        //    cin.ignore();
+        //}
     logOut();
+}
+
+
+
+
+void popFlight()
+{
+    int i, cNm, cNm2, cTm;
+    cout << setw(75) << "Today's most popular flights are:" << setw(45) << "*" << endl;
+    //lists random flight arriv % dest, along with random time
+    for (i = 0; i < 3; i++) {
+        cNm = rand() % 5;
+    repTm2:
+        cTm = rand() % 10;
+        cout <<setw(29) << i + 1 << ". " << flightNm[cNm] << " to ";
+    repNm2:
+        cNm2 = rand() % 5;
+        if (cNm == cNm2) {
+            goto repNm2;
+        }
+        else {
+            cout << flightNm[cNm2] << ": ";
+        }
+        cout << flightTm[cTm] << endl;
+    }
 }
