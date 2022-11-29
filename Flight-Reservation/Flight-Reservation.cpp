@@ -42,6 +42,7 @@ void mainmenu() {
         i++;
     }
     
+
     cout << setw(72) << "__ | __" << setw(58)<< endl;
     cout << setw(72) << "--@--@--(_)--@--@--" << setw(52) << endl;
     cout << setw(95) << "\n";
