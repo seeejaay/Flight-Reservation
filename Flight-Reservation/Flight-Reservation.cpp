@@ -18,27 +18,42 @@ void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut();
 int main()
 {
     srand(time(0));
+    system("Color 03");
     //menu();
-    FlightChc();
+    mainmenu();
+    //FlightChc();
 }
 
 void mainmenu() {
     int i = 0;
-    while (i < 120) {
+    int b = 0;
+    cout << setw(5);
+    while (i < 110) {
         cout << "*";
         i++;
     }
-    cout << "*" << '\n' << "*" << setw(78) << "Welcome to BBMM's Flight Reservation!" << setw(43) << "*\n";
+    
+    cout << setw(88) << "Welcome to BBMM's Flight Reservation!" << setw(43) << "\n";
+   
     i = 0;
-    cout << "*";
-    while (i < 119) {
+    cout << setw(5);
+    while (i < 110) {
         cout << "~";
         i++;
     }
-    cout << "*\n";
-    cout << "*" << setw(62) << "__ | __" << setw(58) << "*" << endl;
-    cout << "*" << setw(68) << "--@--@--(_)--@--@--" << setw(52) << "*" << endl;
-    cout << "*" << setw(120) << "*" << endl;
+    
+    cout << setw(72) << "__ | __" << setw(58)<< endl;
+    cout << setw(72) << "--@--@--(_)--@--@--" << setw(52) << endl;
+    cout << setw(95) << "\n";
+    b = 0;
+    cout << setw(5);
+    while (b < 110) {
+        cout << "~";
+        b++;
+    }
+    
+  
+    
 }
 
 
