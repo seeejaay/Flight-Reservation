@@ -20,9 +20,10 @@ int main()
 {
     srand(time(0));
     system("Color 03");
-    
     mainmenu();
-    menu();
+    FlightChc();
+    /*mainmenu();
+    menu();*/
     //testing purpose
     //FlightChc();
 }
@@ -232,7 +233,7 @@ void FlightChc() {
             {
                 cout << "Enter Preferred Date: ";
                 cin >> datePicker;
-            } while (datePicker > 30);
+            } while (datePicker > 30 || datePicker < 0);
         }
         //february no leap year
         else if (monthPicker == 2)
@@ -241,7 +242,7 @@ void FlightChc() {
             {
                 cout << "Enter Preferred Date: ";
                 cin >> datePicker;
-            } while (datePicker > 28);
+            } while (datePicker > 28 || datePicker < 0);
         }
         //months with 31 days
         else if (monthPicker == 1 || monthPicker == 3 || monthPicker == 5 || monthPicker == 7 || monthPicker == 8 || monthPicker == 10 || monthPicker == 12)
@@ -250,11 +251,11 @@ void FlightChc() {
             {
                 cout << "Enter Preferred Date: ";
                 cin >> datePicker;
-            } while (datePicker > 31);
+            } while (datePicker > 31 || datePicker < 0);
         }
         else
         {
-            cout << "INVALID INPUT";
+            cout << "INVALID INPUT"<<endl;
             Sleep(1);
             goto enterMonthNum;
         }
@@ -338,13 +339,12 @@ void FlightChc() {
 void popFlight()
 {
     int i, cNm, cNm2, cTm;
-    cout << setw(75) << "Today's most popular flights are:" << setw(45) << "*" << endl;
-    //lists random flight arriv % dest, along with random time
+    cout << setw(80) << "Today's most popular flights are:" << endl;
+    //lists random flight arriv & dest, along with random time
     for (i = 0; i < 3; i++) {
         cNm = rand() % 5;
-    repTm2:
         cTm = rand() % 10;
-        cout <<setw(29) << i + 1 << ". " << flightNm[cNm] << " to ";
+        cout <<setw(32) << i + 1 << ". " << flightNm[cNm] << " to ";
     repNm2:
         cNm2 = rand() % 5;
         if (cNm == cNm2) {
