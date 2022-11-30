@@ -11,8 +11,11 @@ using namespace std;
 string flightNm[5] = { "Jakarta, Indonesia", "Amsterdam, Netherlands", "New York, USA", "Manila, Philippines", "Osaka, Japan" };
 string flightTm[10] = { "10:00PM - 11:00PM", "12:15AM - 2:00AM", "3:00AM - 3:45AM", "4:00AM - 5:30AM", "12:00PM - 2:15PM", "8:00AM - 9:20AM", "3:00PM - 4:45PM", "5:30PM - 7:00PM", "7:15PM - 8:50PM", "9:15PM - 9:50PM" };
 string months[12] = { "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec" };
-string flightUser[1][4];
+string flightUser[4];
 string uName, pWord;
+
+int numTicket[50][2], datePicker;
+
 void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut(), popFlight();
 
 
@@ -182,14 +185,16 @@ void logOut()
 
 void FlightChc() {
     string reply, flightTmStore[5];
-    int depChc, ariChc, timeChc, seat= 0, randStore[5] = {},monthPicker,datePicker, passengerNum;
-    int seatNo = (rand() % 500) + 1;
+    int depChc, ariChc, timeChc, seat = 0, randStore[5] = {}, monthPicker, passengerNum;
+    int seatNo = (rand() % 500);
     int counter;
-    int Class;
+    //int Class;
     mainmenu();
-    cout << "How many seat do you want to reserve? : ";
-    cin >> passengerNum;
-    int* seatPos = new int(passengerNum);
+    do {
+        cout << "How many seat do you want to reserve? : ";
+        cin >> passengerNum;
+    } while (passengerNum > 50);
+    numTicket[passengerNum][2];
         //displays flight locations
         for (int i = 0; i < 5; i++)
         {
@@ -204,7 +209,7 @@ void FlightChc() {
             cout << "Invalid location\n";
             goto depart;
         }
-        flightUser[0][0] = flightNm[depChc - 1];
+        flightUser[0] = flightNm[depChc - 1];
     arriv:
         cout << "Enter your arrival location from the list: ";
         cin >> ariChc;
@@ -223,6 +228,7 @@ void FlightChc() {
             goto arriv;
         }
         //lets you pick departure date
+        flightUser[1] = flightNm[ariChc - 1];
     enterMonthNum:
         cout << "Enter the Month Number (1,2,3,4,5,...) : ";
         cin >> monthPicker;
@@ -260,11 +266,8 @@ void FlightChc() {
             Sleep(1);
             goto enterMonthNum;
         }
-        monthPicker -= 1;
-
-
-        flightUser[0][1] = flightNm[ariChc - 1];
-        cout << "Your flight will be from " << flightUser[0][0] << " to " << flightUser[0][1] << "." << endl;
+        flightUser[3] = months[monthPicker - 1];
+        cout << "Your flight will be from " << flightUser[0] << " to " << flightUser[1] << "." << endl;
         cout << "The time slots are: " << endl;
         int c = 0, r;
         //randomizes index of randStore[]
@@ -289,49 +292,30 @@ void FlightChc() {
             cout << "Invalid time slot!\n";
             goto timeslot;
         }
-        flightUser[0][2] = flightTmStore[timeChc - 1];
+        flightUser[2] = flightTmStore[timeChc - 1];
         for (counter = 1; counter <= passengerNum; counter++)
         {
             seatChc:
             cout << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
             cin >> seat;
-            int a = 0;
-           while(a <= passengerNum)
-           {
-                if (seatPos[a-1] != seatPos[a])
-                {
-                    seatPos[counter - 1] = seat;
+            for (int i = 0; i < passengerNum; i++) {
+                if (seat != numTicket[i][0]) {
+                    numTicket[i][0] = seat;
                 }
-                else
-                {
-                    cout << "Seat " << seat << " is already booked!";
+                else {
+                    cout << "Seat " << seat << " is already booked!" << endl;
                     goto seatChc;
                 }
-                a++;
-           }
-            
-            //outputs random no. of seats from 0 - 500
-            if (seatNo == 0)
-            {
-                cout << "There are no more seats available, please choose a different time slot";
-                system("pause");
-                goto timeslot;
             }
-            //checks if invalid input
-            if (seat > seatNo) {
-                cout << "Invalid seat, please choose another one!\n";
-                goto seatChc;
-            }
-            int i = 0;
+            numTicket[counter - 1][1] = rand() % 999999;
             cout << "Please double check your flight details:" << endl;
-            cout << "Destination: " << flightUser[i][0] << " to " << flightUser[i][1] << endl;
-            cout << "Departure Date: " << months[monthPicker] << " " << datePicker << endl;
-            cout << "Time Slot: " << flightUser[i][2] << endl;
-            cout << "Seat # " << seatPos[counter - 1] << endl;
+            cout << "Ticket #" << numTicket[counter - 1][1] << endl;
+            cout << "Destination: " << flightUser[0] << " to " << flightUser[1] << endl;
+            cout << "Departure Date: " << flightUser[3] << " " << datePicker << endl;
+            cout << "Time Slot: " << flightUser[2] << endl;
+            cout << "Seat # " << numTicket[counter-1][0] << endl;
             seatNo -= 1;
-            i++;
             cin.ignore();
-
         }
         //Sleep(1000);
         //system("cls");
@@ -392,7 +376,7 @@ Classes:
         
         cout << "andito na ako"; */
 
-    logOut();
+    //logOut();
 }
 
 
