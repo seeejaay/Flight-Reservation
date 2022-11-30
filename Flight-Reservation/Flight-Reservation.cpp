@@ -20,7 +20,7 @@ int main()
 {
     srand(time(0));
     system("Color 03");
-    mainmenu();
+    //mainmenu();
     FlightChc();
     /*mainmenu();
     menu();*/
@@ -182,7 +182,7 @@ void logOut()
 
 void FlightChc() {
     string reply, flightTmStore[5];
-    int depChc, ariChc, timeChc, seat, randStore[5] = {},monthPicker,datePicker, passengerNum;
+    int depChc, ariChc, timeChc, seat= 0, randStore[5] = {},monthPicker,datePicker, passengerNum;
     int seatNo = (rand() % 500) + 1;
     int counter;
     mainmenu();
@@ -294,7 +294,21 @@ void FlightChc() {
             seatChc:
             cout << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
             cin >> seat;
-            seatPos[counter - 1] = seat;
+            int a = 0;
+           while(a <= passengerNum)
+           {
+                if (seatPos[a-1] != seatPos[a])
+                {
+                    seatPos[counter - 1] = seat;
+                }
+                else
+                {
+                    cout << "Seat " << seat << " is already booked!";
+                    goto seatChc;
+                }
+                a++;
+           }
+            
             //outputs random no. of seats from 0 - 500
             if (seatNo == 0)
             {
