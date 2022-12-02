@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -13,20 +14,20 @@ string months[12] = { "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oc
 string flightUser[4];
 string uName, pWord;
 bool viewTix = false;
-
+bool payclass = false;
 int numTicket[50][2], datePicker, passengerNum;
 
 void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut(), popFlight(), Ticketing(), Class();
-
 
 int main()
 {
     srand(time(0));
     system("Color 03");
-    
+  
     mainmenu();
     menu();
-     
+    
+    
 }
 
 void mainmenu() {
@@ -38,7 +39,7 @@ void mainmenu() {
         i++;
     }
     
-    cout << setw(88) << "Welcome to BBMM's Flight Reservation!" << setw(43) << "\n";
+    cout << setw(88) << "Welcome to Big Big MJ MACA's Flight Reservation!" << setw(43) << "\n";
    
     i = 0;
     cout << setw(5);
@@ -68,7 +69,7 @@ void mainmenu() {
 void menu() {
     int n;
     string reply;
-    cout <<setw(46) <<  "[1] Login" << endl << setw(48) << "[2] Sign Up" << endl << setw(48) << "[3] Log Out" << endl << setw(45) << "[4] Exit" << endl << setw(53) << "[5] View Tickets" << setw(45) <<endl<< "Choice: ";
+    cout << setw(46) << "[1] Login" << endl << setw(48) << "[2] Sign Up" << endl << setw(48) << "[3] Log Out" << endl << setw(45) << "[4] Exit" << endl << setw(53) << "[5] View Tickets" << setw(45) << endl << "Choice: ";
     cin >> n;
     cin.ignore();
     switch (n)
@@ -106,9 +107,9 @@ void menu() {
             exit(1);
         }
         system("cls");
-         mainmenu();
-         menu();
-        
+        mainmenu();
+        menu();
+
         break;
     case 5:
         if (viewTix == true) {
@@ -116,6 +117,12 @@ void menu() {
         }
         Sleep(1000);
         system("cls");
+        mainmenu();
+        menu();
+        break;
+    case 6:
+        
+        
         mainmenu();
         menu();
         break;
@@ -384,17 +391,17 @@ Classes:
         cout << ".";
         system("cls");
         system("pause");
-        
-        cout << "andito na ako"; */
-
-    //logOut();
+        Ticketing();
 }
 void Class() {
+    viewTix = true;
     // User choose a seat class then proceed to payment
 
-    int classes;
-    float price = 0;
+    int classes,i = 0;
+    float price = 0, Payment;
     char checking;
+
+
 
     do {
     Class:
@@ -410,7 +417,7 @@ void Class() {
             cin >> checking;
             if (checking == 'Y' || checking == 'y')
             {
-                cout << "You Have Chosen Economy Class!";
+                cout << "You Have Chosen Economy Class!" << endl;
                 price = 300;
 
             }
@@ -424,7 +431,7 @@ void Class() {
             cin >> checking;
             if (checking == 'Y' || checking == 'y')
             {
-                cout << "You Have Chosen Business Class";
+                cout << "You Have Chosen Business Class" << endl;
                 price = 700;
 
             }
@@ -438,7 +445,7 @@ void Class() {
             cin >> checking;
             if (checking == 'Y' || checking == 'y')
             {
-                cout << "You Have Chosen First Class";
+                cout << "You Have Chosen First Class" << endl;
                 price = 1200;
 
             }
@@ -454,7 +461,6 @@ void Class() {
         }
         }
     } while (classes > 3);
-   
 }
 
 void popFlight()
@@ -479,7 +485,8 @@ void popFlight()
 }
 
 void Ticketing() {
-    viewTix = true;
+    system("cls");
+    payclass = true;
 selectseat:
     for (int i = 0; i <= 10; i++)
     {
@@ -487,11 +494,11 @@ selectseat:
     }
 
     int viewChc, ticketNo, seatNo;
-    
-    cout << "How would you like to view your ticket?:" << endl << "[1] By Ticket No." << endl << "[2] By Seat No."<<endl <<"[3] All Tickets" << endl << "Choice: ";
+
+    cout << "How would you like to view your ticket?:" << endl << "[1] By Ticket No." << endl << "[2] By Seat No." << endl << "[3] All Tickets" << endl << "Choice: ";
     cin >> viewChc;
 
-   if (viewChc == 1) {
+    if (viewChc == 1) {
     ticketChc:
         cout << "Please enter the ticket no.: ";
         cin >> ticketNo;
@@ -511,12 +518,12 @@ selectseat:
 
                 }
 
-                
+
             }
             char in;
             cout << "Search Ticket again? [Y/N]: ";
             cin >> in;
-            if (in == 'Y' || in =='y')
+            if (in == 'Y' || in == 'y')
             {
                 goto ticketChc;
             }
@@ -524,7 +531,7 @@ selectseat:
             i++;
 
         }
-   }
+    }
     else if (viewChc == 2) {
     seatChc:
         cout << "Please enter the seat no.: ";
@@ -555,7 +562,7 @@ selectseat:
             else logOut();
             i++;
         }
-      
+
     }
     else if (viewChc == 3) {
         for (int i = 0; i < passengerNum; i++) {
@@ -565,20 +572,21 @@ selectseat:
             cout << "Destination: " << flightUser[0] << " to " << flightUser[1] << endl;
             cout << "Departure Date: " << flightUser[3] << " " << datePicker << endl;
             cout << "Time Slot: " << flightUser[2] << endl << endl;
-            
+
         }
-        
+
         logOut();
-        
+
     }
+
     else 
     {
-       cout << "Invalid Input!";
-       Sleep(1000);
-       system("cls");
-       goto selectseat;
-   }
-   
+        cout << "Invalid Input!";
+        Sleep(1000);
+        system("cls");
+        goto selectseat;
+    }
+
 }
 
 
