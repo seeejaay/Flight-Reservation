@@ -234,7 +234,7 @@ void FlightChc() {
         cin >> monthPicker;
 
         //mos. with 30 days
-        if (monthPicker == 4 || monthPicker == 6 || monthPicker == 11)
+        if (monthPicker == 4 || monthPicker == 6 || monthPicker == 11 || monthPicker == 9)
         {
             do
             {
@@ -503,6 +503,7 @@ void Ticketing() {
                 cout << "Time Slot: " << flightUser[2] << endl;
                 maxCheck += 1;
                 i++;
+                break;
             }
 
         }
@@ -525,6 +526,7 @@ void Ticketing() {
                 cout << "Time Slot: " << flightUser[2] << endl;
                 maxCheck += 1;
                 i++;
+                break;
             }
 
         }
