@@ -14,9 +14,9 @@ string months[12] = { "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oc
 string flightUser[4];
 string uName, pWord;
 
-int numTicket[50][2], datePicker;
+int numTicket[50][2], datePicker, passengerNum;
 
-void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut(), popFlight();
+void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut(), popFlight(), Ticketing();
 
 
 int main()
@@ -27,6 +27,7 @@ int main()
     FlightChc();
     /*mainmenu();
     menu();*/
+    Ticketing();
     //testing purpose
     //FlightChc();
 }
@@ -185,7 +186,7 @@ void logOut()
 
 void FlightChc() {
     string reply, flightTmStore[5];
-    int depChc, ariChc, timeChc, seat = 0, randStore[5] = {}, monthPicker, passengerNum;
+    int depChc, ariChc, timeChc, seat = 0, randStore[5] = {}, monthPicker;
     int seatNo = (rand() % 500);
     int counter;
     //int Class;
@@ -193,8 +194,7 @@ void FlightChc() {
     do {
         cout << "How many seat do you want to reserve? : ";
         cin >> passengerNum;
-    } while (passengerNum > 50);
-    numTicket[passengerNum][2];
+    } while (passengerNum > 50 || passengerNum < 0);
         //displays flight locations
         for (int i = 0; i < 5; i++)
         {
@@ -293,12 +293,14 @@ void FlightChc() {
             goto timeslot;
         }
         flightUser[2] = flightTmStore[timeChc - 1];
+        int i = 0;
+        c = 0;
         for (counter = 1; counter <= passengerNum; counter++)
         {
             seatChc:
             cout << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
             cin >> seat;
-            for (int i = 0; i < passengerNum; i++) {
+            for (i; i < passengerNum; i++) {
                 if (seat != numTicket[i][0]) {
                     numTicket[i][0] = seat;
                 }
@@ -307,14 +309,21 @@ void FlightChc() {
                     goto seatChc;
                 }
             }
-            numTicket[counter - 1][1] = rand() % 999999;
-            cout << "Please double check your flight details:" << endl;
-            cout << "Ticket #" << numTicket[counter - 1][1] << endl;
-            cout << "Destination: " << flightUser[0] << " to " << flightUser[1] << endl;
-            cout << "Departure Date: " << flightUser[3] << " " << datePicker << endl;
-            cout << "Time Slot: " << flightUser[2] << endl;
-            cout << "Seat # " << numTicket[counter-1][0] << endl;
+            /*do {
+            seatChc:
+                
+                seatnum
+                int i = 0;
+                for (i; i < passengerNum; i++) {
+
+                }
+            } while (seat <= seatNo);*/
+            numTicket[c][1] = rand() % 999999;
+            cout << "Ticket Number: " << numTicket[c][1] << endl;
+            cout << "Seat # " << numTicket[i][0] << endl;
             seatNo -= 1;
+            i++;
+            c++;
             cin.ignore();
         }
         //Sleep(1000);
@@ -379,9 +388,6 @@ Classes:
     //logOut();
 }
 
-
-
-
 void popFlight()
 {
     int i, cNm, cNm2, cTm;
@@ -401,4 +407,44 @@ void popFlight()
         }
         cout << flightTm[cTm] << endl;
     }
+}
+
+void Ticketing() {
+    for(int i = 0; i<=10; i++)
+    {
+        cout << numTicket[i][0] << " " << numTicket[i][1] << endl;
+    }
+
+    int viewChc, ticketNo, maxCheck = 1;
+    cout << "How would you like to view your ticket?:" << endl << "[1] By Ticket No." << endl << "[2] By Seat No." << endl;
+    cin >> viewChc;
+    if (viewChc == 1) {
+    ticketChc:
+        cout << "Please enter the ticket no.: ";
+        cin >> ticketNo;
+        int i = 0;
+        while ( i <= passengerNum) {
+            if (ticketNo != numTicket[i][1]) {
+                cout << "Invalid ticket number!" << endl;
+                goto ticketChc;
+                
+            }
+            else  {
+                cout << "Ticket Number: " << numTicket[i][1] << endl;
+                cout << "Seat #" << numTicket[i][0] << endl;
+                cout << "Destination: " << flightUser[0] << " to " << flightUser[1] << endl;
+                cout << "Departure Date: " << flightUser[3] << " " << datePicker << endl;
+                cout << "Time Slot: " << flightUser[2] << endl;
+                maxCheck += 1;
+                i++;
+            }
+            
+        }
+    }
+    /*else if (viewChc == 2) {
+
+        }
+        else {
+
+        }*/
 }
