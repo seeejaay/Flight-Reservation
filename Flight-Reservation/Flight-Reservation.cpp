@@ -498,14 +498,21 @@ selectseat:
         cin >> ticketNo;
         int i = 0;
         //loops while inputted tickets are below passengerNum
-        while (i <= passengerNum)
+        /*while (i <= passengerNum)
         {
-            //loops ticket output based on number of passengers entered
+           */ //loops ticket output based on number of passengers entered
             for (int b = 0; b <= passengerNum; b++)
             {
                 //checks if inputted ticket is valid
-                if (ticketNo == numTicket[b][1])
-                {
+                for (int j = 0; j < passengerNum; j++) {
+                    //checks for seat duplication
+                    if (ticketNo != numTicket[j][0]) {
+                        cout << "Invalid ticket!" << endl;
+                        goto ticketChc;
+                        break;
+                    }
+                }
+                if (ticketNo == numTicket[b][0]) {
                     cout << "Ticket Number: " << numTicket[b][1] << endl;
                     cout << "Seat #" << numTicket[b][0] << endl;
                     cout << "Destination: " << flightUser[0] << " to " << flightUser[1] << endl;
@@ -513,7 +520,6 @@ selectseat:
                     cout << "Time Slot: " << flightUser[2] << endl;
                     break;
                 }
-               
             }
             char in;
             cout << "Search Ticket again? [Y/N]: ";
@@ -523,8 +529,8 @@ selectseat:
                 goto ticketChc;
             }
             else logOut();
-            i++;
-        }
+            /*i++;
+        }*/
     }
     else if (viewChc == 2) {
     seatChc:
