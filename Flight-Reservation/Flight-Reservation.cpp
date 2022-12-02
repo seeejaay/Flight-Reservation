@@ -339,10 +339,53 @@ void FlightChc() {
         //    seatNo -= 1;
         //    cin.ignore();
         //}
-               
+ 
+        // User choose a seat class then proceed to payment
+/*
+Classes:
 
-//HEAD
-logOut();
+        cout << "Pick a seat class" << endl;
+        cout << "1. Economy Class" << endl;
+        cout << "2. First Class" << endl;
+        cout << "3. Businesss Class" << endl;
+        cin >> Class;
+
+        switch (Class) {
+        case 1: {
+                cout << "You Have Chosen Economy Class!";
+                break;
+            }
+        case 2: {
+                cout << "You Have Chosen First Class";
+                break;
+            }
+        case 3: {
+                cout << "You Have Chosen Business Class";
+                break;
+            }
+        default: {
+                cout << "Invalid Input"<<endl;
+                Sleep(2000);
+                system("cls");
+                goto Classes;
+                break;
+            }
+        }
+    
+        //price
+        //  system("cls");
+        cout << "Proceeding Payment";
+        cout << ".";
+        Sleep(1000);
+        cout << ".";
+        Sleep(1000);
+        cout << ".";
+        system("cls");
+        system("pause");
+        
+        cout << "andito na ako"; */
+
+    //logOut();
 }
 void Class() {
     // User choose a seat class then proceed to payment
