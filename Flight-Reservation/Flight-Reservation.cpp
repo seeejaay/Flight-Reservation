@@ -335,9 +335,63 @@ void FlightChc() {
             c++;
             cin.ignore();
         }
+        //Sleep(1000);
+        //system("cls");
+        //int i;
+        ////outputs flight receipt
+        //for (i = ;i <= passengerNum; i++) {
+        //    cout << "Please double check your flight details:" << endl;
+        //    cout << "Destination: " << flightUser[i][0] << " to " << flightUser[i][1] << endl;
+        //    cout << "Departure Date: " << months[monthPicker] << " " << datePicker << endl;
+        //    cout << "Time Slot: " << flightUser[i][2] << endl;
+        //    cout << "Seat # " << seatPos[counter - 1] << endl;
+        //    seatNo -= 1;
+        //    cin.ignore();
+        //}
+ 
+        // User choose a seat class then proceed to payment
+/*
+Classes:
+
+        cout << "Pick a seat class" << endl;
+        cout << "1. Economy Class" << endl;
+        cout << "2. First Class" << endl;
+        cout << "3. Businesss Class" << endl;
+        cin >> Class;
+
+        switch (Class) {
+        case 1: {
+                cout << "You Have Chosen Economy Class!";
+                break;
+            }
+        case 2: {
+                cout << "You Have Chosen First Class";
+                break;
+            }
+        case 3: {
+                cout << "You Have Chosen Business Class";
+                break;
+            }
+        default: {
+                cout << "Invalid Input"<<endl;
+                Sleep(2000);
+                system("cls");
+                goto Classes;
+                break;
+            }
+        }
+    
+        //price
+        //  system("cls");
+        cout << "Proceeding Payment";
+        cout << ".";
+        Sleep(1000);
+        cout << ".";
+        Sleep(1000);
+        cout << ".";
+        system("cls");
         system("pause");
-        Class();
-      
+        Ticketing();
 }
 void Class() {
     viewTix = true;
@@ -407,38 +461,6 @@ void Class() {
         }
         }
     } while (classes > 3);
-    price = price * passengerNum;
-
-    cout << "Your total ticket price is " << price;
-    do {
-        cout << endl << "Enter your payment: " << endl;
-        cin >> Payment;
-    } while (Payment < price);
-
-    cout << "Processing Receipt";
-    while (i < 3) {
-        cout << " . ";
-        i++;
-        Sleep(1000);
-    }
-    system("cls");
-
-    cout << setw(88) << "Welcome to BBMM's Flight Receipt!" << setw(39) << "\n";
-
-    while (i < 110) {
-        cout << "~";
-        i++;
-    }
-    cout << endl;
-
-    cout << "Total number of passengers: " << setw(12) << passengerNum << endl;
-    cout << "Order Total:" << setw(28) << price << endl;
-    cout << "Amount Tendered:" << setw(24) << Payment << endl;
-    cout << "----------------------------------------" << endl;
-    cout << "Change:" << setw(33) << Payment - price << endl;
-
-    logOut();
-
 }
 
 void popFlight()
