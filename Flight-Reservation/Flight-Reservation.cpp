@@ -30,6 +30,7 @@ int main()
 }
 
 void mainmenu() {
+    system("cls");
     int i = 0;
     int b = 0;
     cout << setw(5);
@@ -64,9 +65,9 @@ void mainmenu() {
 
 }
 
-
 void menu() {
-    int n;
+
+    int n ;
     string reply;
     cout << setw(46) << "[1] Login" << endl << setw(48) << "[2] Sign Up" << endl << setw(48) << "[3] Log Out" << endl << setw(45) << "[4] Exit" << endl << setw(53) << "[5] View Tickets" << setw(45) << endl << "Choice: ";
     cin >> n;
@@ -85,13 +86,17 @@ void menu() {
         }
         logIn();
         break;
+
     case 2:
+        //signs the user up
         signUp();
         break;
+
     case 3:
         //logs the user out
         logOut();
         break;
+
     case 4:
         //check if you want to exit program
         cout << "Do you really want to exit the program? [Y/YES] / [N/NO]: ";
@@ -108,35 +113,35 @@ void menu() {
         system("cls");
         mainmenu();
         menu();
-
         break;
+
     case 5:
+        //views tickets if available
         if (viewTix == true) {
             Ticketing();
         }
-        Sleep(1000);
-        system("cls");
-        mainmenu();
-        menu();
+        else {
+            cout << "No tickets available!";
+            Sleep(1000);
+            system("cls");
+            mainmenu();
+            menu();
+        }
         break;
-    case 6:
 
-
-        mainmenu();
-        menu();
-        break;
     default:
+        //resets if invalid input
         cout << "Invalid input!";
-        return mainmenu();
+        mainmenu();
+        menu();
         break;
+    
     }
 }
 
 void signUp()
 {
     string pWordRepeat;
-
-
     cout << "Enter your Username: ";
     getline(cin, uName);
     cout << "Password must be more then 10 characters" << endl;
@@ -144,11 +149,12 @@ again:
 
     cout << "Enter Password: ";
     getline(cin, pWord);
+    //checks for pWord length
     if (pWord.length() <= 10) {
         cout << "Password is too Short" << endl;
         goto again;
     }
-
+    //checks if pWordRepeat is correct to pWord
     do {
         cout << "Enter Password Again: ";
         getline(cin, pWordRepeat);
@@ -163,22 +169,24 @@ again:
     menu();
 
 }
+
 void logIn()
 {
     string cuName, cpWord;
+    //checks if the same as sign up details and logs user in
     do {
         cout << "Enter your Username: ";
         getline(cin, cuName);
         cout << "Enter Password: ";
         getline(cin, cpWord);
     } while (cuName != uName || cpWord != pWord);
-
     cout << "You have succesfully logged in!" << endl;
     Sleep(1000);
     system("cls");
     return FlightChc();
 
 }
+
 void logOut()
 {
     cin.ignore();
@@ -186,17 +194,19 @@ repeat:
     string reply;
     cout << "Do you want to logout? [Y/N]: ";
     getline(cin, reply);
-    //convers input to all caps
+    //converts input to all caps
     transform(reply.begin(), reply.end(), reply.begin(), ::toupper);
+    //checks for user decision
     if (reply == "Y" || reply == "YES") {
         Sleep(1000);
         system("cls");
         mainmenu();
         menu();
     }
-    else goto repeat;
+    else {
+        goto repeat;
+    }
 }
-
 
 void FlightChc() {
     string reply, flightTmStore[5];
@@ -204,6 +214,7 @@ void FlightChc() {
     int seatNo = (rand() % 500);
     int counter;
     mainmenu();
+    // lets user input how many seats to reserve
     do {
         cout << "How many seat do you want to reserve? : ";
         cin >> passengerNum;
@@ -249,30 +260,34 @@ enterMonthNum:
     //mos. with 30 days
     if (monthPicker == 4 || monthPicker == 6 || monthPicker == 11 || monthPicker == 9)
     {
+        //enter dates from 1 to 30
         do
         {
             cout << "Enter Preferred Date: ";
             cin >> datePicker;
-        } while (datePicker > 30 || datePicker < 0);
+        } while (datePicker > 30 || datePicker < 1);
     }
     //february no leap year
     else if (monthPicker == 2)
     {
+        //enter dates from 1 to 28
         do
         {
             cout << "Enter Preferred Date: ";
             cin >> datePicker;
-        } while (datePicker > 28 || datePicker < 0);
+        } while (datePicker > 28 || datePicker < 1);
     }
     //months with 31 days
     else if (monthPicker == 1 || monthPicker == 3 || monthPicker == 5 || monthPicker == 7 || monthPicker == 8 || monthPicker == 10 || monthPicker == 12)
     {
+        //enter dates from 1 to 31
         do
         {
             cout << "Enter Preferred Date: ";
             cin >> datePicker;
-        } while (datePicker > 31 || datePicker < 0);
+        } while (datePicker > 31 || datePicker < 1);
     }
+    //checks for invalid input
     else
     {
         cout << "INVALID INPUT" << endl;
@@ -283,11 +298,10 @@ enterMonthNum:
     cout << "Your flight will be from " << flightUser[0] << " to " << flightUser[1] << "." << endl;
     cout << "The time slots are: " << endl;
     int c = 0, r;
-    //randomizes index of randStore[]
-
     //outputs random time
     while (c < 5)
     {
+        //checks for duplicate time
         do
         {
             r = rand() % 10;
@@ -308,13 +322,22 @@ timeslot:
     flightUser[2] = flightTmStore[timeChc - 1];
     int i = 0;
     c = 0;
+    //loops seat selection based on number of passengers entered
     for (counter = 1; counter <= passengerNum; counter++)
     {
     seatChc:
-        cout << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
+        cout << endl << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
         cin >> seat;
+        //checks for invalid seat
+        if (seat > seatNo || seat <= 0) {
+            cout << "Invalid seat!" << endl;
+            goto seatChc;
+        }
+        //loops seat input into array depending on condition
         for (i; i < passengerNum; i++) {
+            //loops checking for duplicate seats
             for (int j = 0; j < passengerNum; j++) {
+                //checks for seat duplication
                 if (seat == numTicket[j][0]) {
                     cout << "Seat " << seat << " is already booked!" << endl;
                     goto seatChc;
@@ -338,77 +361,77 @@ timeslot:
     Class();
 
 }
+
 void Class() {
     viewTix = true;
-    // User choose a seat class then proceed to payment
-
     int classes, i = 0;
     float price = 0, Payment;
     char checking;
-
-
-
+    //user chooses a seat class then proceed to payment
     do {
     Class:
-        cout << "Please Pick a seat class (Price included)" << endl;
+        cout << "Please pick a seat class (Price included):" << endl;
         cout << "1. Economy Class: 300$" << endl;
         cout << "2. Business Class: 700$" << endl;
         cout << "3. First Class: 1200$" << endl;
         cin >> classes;
-
         switch (classes) {
-        case 1: {
-            cout << "Are you sure about that? [Y/N]" << endl;
-            cin >> checking;
-            if (checking == 'Y' || checking == 'y')
-            {
-                cout << "You Have Chosen Economy Class!" << endl;
-                price = 300;
+            case 1: {
+                cout << "Are you sure about that? [Y/N]" << endl;
+                cin >> checking;
+                if (checking == 'Y' || checking == 'y')
+                {
+                    cout << "You Have Chosen Economy Class!" << endl;
+                    price = 300;
 
+                }
+                else if (checking == 'N' || checking == 'n') {
+                    goto Class;
+                }
+                break;
             }
-            else if (checking == 'N' || checking == 'n') {
-                goto Class;
-            }
-            break;
-        }
-        case 2: {
-            cout << "Are you sure about that? [Y/N]" << endl;
-            cin >> checking;
-            if (checking == 'Y' || checking == 'y')
-            {
-                cout << "You Have Chosen Business Class" << endl;
-                price = 700;
 
-            }
-            else if (checking == 'N' || checking == 'n') {
-                goto Class;
-            }
-            break;
-        }
-        case 3: {
-            cout << "Are you sure about that? [Y/N]" << endl;
-            cin >> checking;
-            if (checking == 'Y' || checking == 'y')
-            {
-                cout << "You Have Chosen First Class" << endl;
-                price = 1200;
+            case 2: {
+                cout << "Are you sure about that? [Y/N]" << endl;
+                cin >> checking;
+                if (checking == 'Y' || checking == 'y')
+                {
+                    cout << "You Have Chosen Business Class" << endl;
+                    price = 700;
 
+                }
+                else if (checking == 'N' || checking == 'n') {
+                    goto Class;
+                }
+                break;
             }
-            else if (checking == 'N' || checking == 'n') {
-                goto Class;
+
+            case 3: {
+                cout << "Are you sure about that? [Y/N]" << endl;
+                cin >> checking;
+                if (checking == 'Y' || checking == 'y')
+                {
+                    cout << "You Have Chosen First Class" << endl;
+                    price = 1200;
+
+                }
+                else if (checking == 'N' || checking == 'n') {
+                    goto Class;
+                }
+                break;
             }
-            break;
+
+            default: {
+                cout << "Invalid Input" << endl;
+                Sleep(2000);
+                break;
+            }
         }
-        default: {
-            cout << "Invalid Input" << endl;
-            Sleep(2000);
-            break;
-        }
-        }
-    } while (classes > 3);
+    } while (classes > 3 || classes < 1);
+    //computes for price based on seats
     price = price * passengerNum;
-
     cout << "Your total ticket price is " << price;
+    //loops payment input if not enough
     do {
         cout << endl << "Enter your payment: " << endl;
         cin >> Payment;
@@ -429,7 +452,7 @@ void Class() {
         i++;
     }
     cout << endl;
-
+    //outputs the receipt
     cout << "Total number of passengers: " << setw(12) << passengerNum << endl;
     cout << "Order Total:" << setw(28) << price << endl;
     cout << "Amount Tendered:" << setw(24) << Payment << endl;
@@ -444,7 +467,7 @@ void popFlight()
 {
     int i, cNm, cNm2, cTm;
     cout << setw(80) << "Today's most popular flights are:" << endl;
-    //lists random flight arriv & dest, along with random time
+    //lists random flight arrival & destination, along with random time
     for (i = 0; i < 3; i++) {
         cNm = rand() % 5;
         cTm = rand() % 10;
@@ -465,25 +488,22 @@ void Ticketing() {
     system("cls");
     payclass = true;
 selectseat:
-    for (int i = 0; i <= 10; i++)
-    {
-        cout << numTicket[i][0] << " " << numTicket[i][1] << endl;
-    }
-
     int viewChc, ticketNo, seatNo;
-
     cout << "How would you like to view your ticket?:" << endl << "[1] By Ticket No." << endl << "[2] By Seat No." << endl << "[3] All Tickets" << endl << "Choice: ";
     cin >> viewChc;
-
+    //checks for user input
     if (viewChc == 1) {
     ticketChc:
         cout << "Please enter the ticket no.: ";
         cin >> ticketNo;
         int i = 0;
+        //loops while inputted tickets are below passengerNum
         while (i <= passengerNum)
         {
+            //loops ticket output based on number of passengers entered
             for (int b = 0; b <= passengerNum; b++)
             {
+                //checks if inputted ticket is valid
                 if (ticketNo == numTicket[b][1])
                 {
                     cout << "Ticket Number: " << numTicket[b][1] << endl;
@@ -492,10 +512,8 @@ selectseat:
                     cout << "Departure Date: " << flightUser[3] << " " << datePicker << endl;
                     cout << "Time Slot: " << flightUser[2] << endl;
                     break;
-
                 }
-
-
+               
             }
             char in;
             cout << "Search Ticket again? [Y/N]: ";
@@ -506,7 +524,6 @@ selectseat:
             }
             else logOut();
             i++;
-
         }
     }
     else if (viewChc == 2) {
@@ -528,6 +545,7 @@ selectseat:
                     i++;
                     break;
                 }
+                
             }
             char in;
             cout << "Search Ticket again? [Y/N]: ";
@@ -542,6 +560,7 @@ selectseat:
 
     }
     else if (viewChc == 3) {
+        system("cls");
         for (int i = 0; i < passengerNum; i++) {
             cout << "Ticket " << i + 1 << endl;
             cout << "Ticket Number: " << numTicket[i][1] << endl;
@@ -551,11 +570,8 @@ selectseat:
             cout << "Time Slot: " << flightUser[2] << endl << endl;
 
         }
-
         logOut();
-
     }
-
     else
     {
         cout << "Invalid Input!";
@@ -563,7 +579,6 @@ selectseat:
         system("cls");
         goto selectseat;
     }
-
 }
 
 
