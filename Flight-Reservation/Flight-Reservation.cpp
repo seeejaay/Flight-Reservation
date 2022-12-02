@@ -16,7 +16,7 @@ string uName, pWord;
 
 int numTicket[50][2], datePicker, passengerNum;
 
-void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut(), popFlight(), Ticketing();
+void mainmenu(), logIn(), signUp(), menu(), FlightChc(), logOut(), popFlight(), Ticketing(), Class();
 
 
 int main()
@@ -24,12 +24,13 @@ int main()
     srand(time(0));
     system("Color 03");
     //mainmenu();
+    //Class();
     FlightChc();
     /*mainmenu();
     menu();*/
     Ticketing();
     //testing purpose
-    //FlightChc();
+    //FlightChc();    
 }
 
 void mainmenu() {
@@ -189,7 +190,6 @@ void FlightChc() {
     int depChc, ariChc, timeChc, seat = 0, randStore[5] = {}, monthPicker;
     int seatNo = (rand() % 500);
     int counter;
-    //int Class;
     mainmenu();
     do {
         cout << "How many seat do you want to reserve? : ";
@@ -339,53 +339,10 @@ void FlightChc() {
         //    seatNo -= 1;
         //    cin.ignore();
         //}
- 
-        // User choose a seat class then proceed to payment
-/*
-Classes:
+               
 
-        cout << "Pick a seat class" << endl;
-        cout << "1. Economy Class" << endl;
-        cout << "2. First Class" << endl;
-        cout << "3. Businesss Class" << endl;
-        cin >> Class;
-
-        switch (Class) {
-        case 1: {
-                cout << "You Have Chosen Economy Class!";
-                break;
-            }
-        case 2: {
-                cout << "You Have Chosen First Class";
-                break;
-            }
-        case 3: {
-                cout << "You Have Chosen Business Class";
-                break;
-            }
-        default: {
-                cout << "Invalid Input"<<endl;
-                Sleep(2000);
-                system("cls");
-                goto Classes;
-                break;
-            }
-        }
-    
-        //price
-        //  system("cls");
-        cout << "Proceeding Payment";
-        cout << ".";
-        Sleep(1000);
-        cout << ".";
-        Sleep(1000);
-        cout << ".";
-        system("cls");
-        system("pause");
-        
-        cout << "andito na ako"; */
-
-    //logOut();
+//HEAD
+logOut();
 }
 void Class() {
     // User choose a seat class then proceed to payment
@@ -532,3 +489,7 @@ void Ticketing() {
         }
     }
 }
+
+
+
+
