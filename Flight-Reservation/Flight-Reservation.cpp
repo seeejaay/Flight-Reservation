@@ -135,10 +135,7 @@ void menu() {
         mainmenu();
         menu();
         break;
-    default:
-        cout << "Invalid input!";
-        return mainmenu();
-        break;
+    
     }
 }
 
@@ -516,8 +513,7 @@ selectseat:
                     cout << "Time Slot: " << flightUser[2] << endl;
                     break;
                 }
-                cout << "Invalid ticket number!" << endl;
-                break;
+               
             }
             char in;
             cout << "Search Ticket again? [Y/N]: ";
@@ -549,10 +545,7 @@ selectseat:
                     i++;
                     break;
                 }
-                else {
-                    cout << "Invalid seat number!" << endl;
-                    break;
-                }
+                
             }
             char in;
             cout << "Search Ticket again? [Y/N]: ";
