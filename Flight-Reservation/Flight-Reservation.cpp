@@ -454,7 +454,7 @@ void Class() {
         }
         }
     } while (classes > 3);
-    cout << ""
+   
 }
 
 void popFlight()
