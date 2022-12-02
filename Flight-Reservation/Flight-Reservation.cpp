@@ -66,7 +66,8 @@ void mainmenu() {
 }
 
 void menu() {
-    int n;
+
+    int n ;
     string reply;
     cout << setw(46) << "[1] Login" << endl << setw(48) << "[2] Sign Up" << endl << setw(48) << "[3] Log Out" << endl << setw(45) << "[4] Exit" << endl << setw(53) << "[5] View Tickets" << setw(45) << endl << "Choice: ";
     cin >> n;
@@ -133,6 +134,10 @@ void menu() {
         cout << "Invalid input!";
         mainmenu();
         menu();
+        break;
+    default:
+        cout << "Invalid input!";
+        return mainmenu();
         break;
     }
 }
