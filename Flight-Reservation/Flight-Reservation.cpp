@@ -341,7 +341,114 @@ void FlightChc() {
         //}
                
 
-    logOut();
+        cout << "Pick a seat class" << endl;
+        cout << "1. Economy Class" << endl;
+        cout << "2. First Class" << endl;
+        cout << "3. Businesss Class" << endl;
+        cin >> Class;
+
+        switch (Class) {
+        case 1: {
+                cout << "You Have Chosen Economy Class!";
+                break;
+            }
+        case 2: {
+                cout << "You Have Chosen First Class";
+                break;
+            }
+        case 3: {
+                cout << "You Have Chosen Business Class";
+                break;
+            }
+        default: {
+                cout << "Invalid Input";
+                Sleep(2000);
+                system("cls");
+                goto Classes;
+                break;
+            }
+        }
+    
+        //price
+        //  system("cls");
+        cout << "Proceeding Payment";
+        cout << ".";
+        Sleep(1000);
+        cout << ".";
+        Sleep(1000);
+        cout << ".";
+        system("cls");
+        system("pause");
+        
+        cout << "andito na ako"; */
+
+    //logOut();
+}
+void Class() {
+    // User choose a seat class then proceed to payment
+
+    int classes;
+    float price = 0;
+    char checking;
+
+    do {
+    Class:
+        cout << "Please Pick a seat class (Price included)" << endl;
+        cout << "1. Economy Class: 300$" << endl;
+        cout << "2. Business Class: 700$" << endl;
+        cout << "3. First Class: 1200$" << endl;
+        cin >> classes;
+
+        switch (classes) {
+        case 1: {
+            cout << "Are you sure about that? [Y/N]" << endl;
+            cin >> checking;
+            if (checking == 'Y' || checking == 'y')
+            {
+                cout << "You Have Chosen Economy Class!";
+                price = 300;
+
+            }
+            else if (checking == 'N' || checking == 'n') {
+                goto Class;
+            }
+            break;
+        }
+        case 2: {
+            cout << "Are you sure about that? [Y/N]" << endl;
+            cin >> checking;
+            if (checking == 'Y' || checking == 'y')
+            {
+                cout << "You Have Chosen Business Class";
+                price = 700;
+
+            }
+            else if (checking == 'N' || checking == 'n') {
+                goto Class;
+            }
+            break;
+        }
+        case 3: {
+            cout << "Are you sure about that? [Y/N]" << endl;
+            cin >> checking;
+            if (checking == 'Y' || checking == 'y')
+            {
+                cout << "You Have Chosen First Class";
+                price = 1200;
+
+            }
+            else if (checking == 'N' || checking == 'n') {
+                goto Class;
+            }
+            break;
+        }
+        default: {
+            cout << "Invalid Input" << endl;
+            Sleep(2000);
+            break;
+        }
+        }
+    } while (classes > 3);
 }
 
 void popFlight()
@@ -366,12 +473,12 @@ void popFlight()
 }
 
 void Ticketing() {
-    for(int i = 0; i<=10; i++)
+    for (int i = 0; i <= 10; i++)
     {
         cout << numTicket[i][0] << " " << numTicket[i][1] << endl;
     }
 
-    int viewChc, ticketNo, maxCheck = 1;
+    int viewChc, ticketNo, seatNo, maxCheck = 1;
     cout << "How would you like to view your ticket?:" << endl << "[1] By Ticket No." << endl << "[2] By Seat No." << endl;
     cin >> viewChc;
     if (viewChc == 1) {
@@ -379,13 +486,13 @@ void Ticketing() {
         cout << "Please enter the ticket no.: ";
         cin >> ticketNo;
         int i = 0;
-        while ( i <= passengerNum) {
+        while (i <= passengerNum) {
             if (ticketNo != numTicket[i][1]) {
                 cout << "Invalid ticket number!" << endl;
                 goto ticketChc;
-                
+
             }
-            else  {
+            else {
                 cout << "Ticket Number: " << numTicket[i][1] << endl;
                 cout << "Seat #" << numTicket[i][0] << endl;
                 cout << "Destination: " << flightUser[0] << " to " << flightUser[1] << endl;
@@ -394,15 +501,31 @@ void Ticketing() {
                 maxCheck += 1;
                 i++;
             }
-            
+
         }
     }
-    /*else if (viewChc == 2) {
+    else if (viewChc == 2) {
+    seatChc:
+        cout << "Please enter the seat no.: ";
+        cin >> seatNo;
+        int i = 0;
+        while (i <= passengerNum) {
+            if (seatNo != numTicket[i][0]) {
+                cout << "Invalid seat number!" << endl;
+                goto seatChc;
+            }
+            else {
+                cout << "Ticket Number: " << numTicket[i][1] << endl;
+                cout << "Seat #" << numTicket[i][0] << endl;
+                cout << "Destination: " << flightUser[0] << " to " << flightUser[1] << endl;
+                cout << "Departure Date: " << flightUser[3] << " " << datePicker << endl;
+                cout << "Time Slot: " << flightUser[2] << endl;
+                maxCheck += 1;
+                i++;
+            }
 
         }
-        else {
-
-        }*/
+    }
 }
 
 
