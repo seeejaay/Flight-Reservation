@@ -301,23 +301,18 @@ void FlightChc() {
             cout << "The available seats left are: " << seatNo << ". \nPlease enter your seat: ";
             cin >> seat;
             for (i; i < passengerNum; i++) {
+                for (int j = 0; j < passengerNum; j++) {
+                    if (seat == numTicket[j][0] ) {
+                        cout << "Seat " << seat << " is already booked!" << endl;
+                        goto seatChc;
+                        break;
+                    }
+                }
                 if (seat != numTicket[i][0]) {
                     numTicket[i][0] = seat;
-                }
-                else {
-                    cout << "Seat " << seat << " is already booked!" << endl;
-                    goto seatChc;
+                    break;
                 }
             }
-            /*do {
-            seatChc:
-                
-                seatnum
-                int i = 0;
-                for (i; i < passengerNum; i++) {
-
-                }
-            } while (seat <= seatNo);*/
             numTicket[c][1] = rand() % 999999;
             cout << "Ticket Number: " << numTicket[c][1] << endl;
             cout << "Seat # " << numTicket[i][0] << endl;
@@ -481,7 +476,7 @@ void Ticketing() {
         cout << numTicket[i][0] << " " << numTicket[i][1] << endl;
     }
 
-    int viewChc, ticketNo, seatNo, maxCheck = 1;
+    int viewChc, ticketNo, maxCheck = 1;
     cout << "How would you like to view your ticket?:" << endl << "[1] By Ticket No." << endl << "[2] By Seat No." << endl;
     cin >> viewChc;
     if (viewChc == 1) {
@@ -489,7 +484,7 @@ void Ticketing() {
         cout << "Please enter the ticket no.: ";
         cin >> ticketNo;
         int i = 0;
-        while (i <= passengerNum) {
+        while ( i <= passengerNum) {
             if (ticketNo != numTicket[i][1]) {
                 cout << "Invalid ticket number!" << endl;
                 goto ticketChc;
@@ -505,7 +500,7 @@ void Ticketing() {
                 i++;
                 break;
             }
-
+            
         }
     }
     else if (viewChc == 2) {
