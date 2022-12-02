@@ -352,18 +352,15 @@ Classes:
 
         switch (Class) {
         case 1: {
-                cout << "You Have Chosen Economy Class!"<<endl;
-                price = 330;
+                cout << "You Have Chosen Economy Class!";
                 break;
             }
         case 2: {
-                cout << "You Have Chosen First Class"<<endl;
-                price = 220;
+                cout << "You Have Chosen First Class";
                 break;
             }
         case 3: {
-                cout << "You Have Chosen Business Class"<<endl;
-                price = 110;
+                cout << "You Have Chosen Business Class";
                 break;
             }
         default: {
@@ -389,6 +386,72 @@ Classes:
         cout << "andito na ako"; */
 
     //logOut();
+}
+void Class() {
+    // User choose a seat class then proceed to payment
+
+    int classes;
+    float price = 0;
+    char checking;
+
+    do {
+    Class:
+        cout << "Please Pick a seat class (Price included)" << endl;
+        cout << "1. Economy Class: 300$" << endl;
+        cout << "2. Business Class: 700$" << endl;
+        cout << "3. First Class: 1200$" << endl;
+        cin >> classes;
+
+        switch (classes) {
+        case 1: {
+            cout << "Are you sure about that? [Y/N]" << endl;
+            cin >> checking;
+            if (checking == 'Y' || checking == 'y')
+            {
+                cout << "You Have Chosen Economy Class!";
+                price = 300;
+
+            }
+            else if (checking == 'N' || checking == 'n') {
+                goto Class;
+            }
+            break;
+        }
+        case 2: {
+            cout << "Are you sure about that? [Y/N]" << endl;
+            cin >> checking;
+            if (checking == 'Y' || checking == 'y')
+            {
+                cout << "You Have Chosen Business Class";
+                price = 700;
+
+            }
+            else if (checking == 'N' || checking == 'n') {
+                goto Class;
+            }
+            break;
+        }
+        case 3: {
+            cout << "Are you sure about that? [Y/N]" << endl;
+            cin >> checking;
+            if (checking == 'Y' || checking == 'y')
+            {
+                cout << "You Have Chosen First Class";
+                price = 1200;
+
+            }
+            else if (checking == 'N' || checking == 'n') {
+                goto Class;
+            }
+            break;
+        }
+        default: {
+            cout << "Invalid Input" << endl;
+            Sleep(2000);
+            break;
+        }
+        }
+    } while (classes > 3);
 }
 
 void popFlight()
